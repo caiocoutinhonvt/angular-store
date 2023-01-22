@@ -1,0 +1,23 @@
+* {
+    margin: 0px;
+    padding: 0px
+}
+
+.email{
+    width:300px;
+    margin-left:270px
+}
+
+.text{
+    color:rgb(255, 255, 255);
+    font-size: medium;
+    font-style: italic;
+    margin-left:270px
+}
+
+footer{
+    
+    bottom:0px;
+    background-color:pink;
+    width:100%;
+}
