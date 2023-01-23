@@ -18,6 +18,7 @@ import { LoginRegisterLayoutComponent } from './user/login-register-layout/login
 import { LoginUserComponent } from './user/login-user/login-user.component';
 import { RegisterUserComponent } from './user/register-user/register-user.component';
 import { ToastrModule } from 'ngx-toastr';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     LoginRegisterLayoutComponent,
     LoginUserComponent,
     RegisterUserComponent,
+    EditProductComponent,
     
   ],
   imports: [

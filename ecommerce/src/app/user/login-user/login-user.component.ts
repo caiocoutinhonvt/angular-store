@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-user',
@@ -24,12 +25,22 @@ export class LoginUserComponent {
     this.UserService.loginUser(this.form.value).subscribe((res) => {
       console.log(res)
 
-      this.toastr.success('Login efetuado com sucesso')
+      Swal.fire({
+        icon: 'success',
+        title: 'Sucess Login',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.router.navigate(['/']);
+      
     },
     error => {
       console.log(error)
-      this.toastr.error('Erro ao logar')
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong with login!',
+      })
     })
   }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -26,11 +27,30 @@ export class SectionComponent {
     )
   }
 
-  delProduct(product:any){
-    console.log(product)
-    this.productService.deleteProducts(product).subscribe((res) => {
-      
-    })
+  delProduct(product_id:any){
+      Swal.fire({
+        title: 'Confirm delete?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          this.productService.deleteProducts(product_id).subscribe((res) => {
+            this.ngOnInit()
+          })
+
+          Swal.fire(
+            'Deleted!',
+            'The product has been deleted.',
+            'success'
+          )
+        }
+      })
+  
   }
   totalProducts(){
     return this.products.length

@@ -19,7 +19,15 @@ export class ProductService {
   }
 
   public deleteProducts(product:any){
-    return this.http.delete(`api/api/products/${product}`)
+    return this.http.delete(`api/api/products/${product}`, product)
+  }
+
+  public getProductById(product:any){
+    return this.http.get(`api/api/products/${product}`)
+  }
+
+  public editProduct(id:any,product:any){
+    return this.http.put(`api/api/products/${product}`, product)
   }
 }
 

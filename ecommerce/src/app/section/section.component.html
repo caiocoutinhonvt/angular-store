@@ -8,7 +8,9 @@
                 <button type="button" class="btn btn-danger btn-circle btn-lg" (click)="delProduct(product.id)"><i class="glyphicon glyphicon-heart">X</i></button>
                 <div class="card h-100" >
                     <!-- Product image-->
-                    <img class="card-img-top" src="{{product.image}}" alt="..." />
+                    <a routerLink="/edit-product/{{product.id}}">
+                        <img class="card-img-top" src="{{product.image}}" alt="..." />
+                    </a>
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">

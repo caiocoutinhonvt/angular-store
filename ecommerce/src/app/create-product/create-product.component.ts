@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../services/product.service';
@@ -11,36 +11,27 @@ import { ProductService } from '../services/product.service';
 })
 export class CreateProductComponent {
 
-  form: FormGroup;
+  createForm!: FormGroup;
   shoesName:string = '';
   price:string = ''
   image:string = ''
-
-  fields = [this.shoesName, this.price, this.image]
-
-  function(){
-    if (this.form.value == ''){
-      console.log('ok')
-    } else {
-      console.log('bye')
-    }
-  }
- 
   
 
-  constructor(private formBuilder:FormBuilder, private productService: ProductService,  private toastr: ToastrService, private router: Router) {
-    this.form = this.formBuilder.group({
-      name: [null],
-      price: [null],
-      image: '',
-      category: [null],
-      store: 1
+  constructor(private productService: ProductService,  private toastr: ToastrService, private router: Router) { }
+
+  ngOnInit():void{
+    this.createForm = new FormGroup({
+      name:  new FormControl([null], [Validators.required]),
+      price: new FormControl([null], [Validators.required]),
+      image: new FormControl([null], [Validators.required]),
+      category: new FormControl([null], [Validators.required]),
+      store: new FormControl(1, [Validators.required]),
     })
   }
 
   onSubmit(){
-    console.log(this.form.value)
-    this.productService.createProducts(this.form.value).subscribe((res) => {
+    console.log(this.createForm.value)
+    this.productService.createProducts(this.createForm.value).subscribe((res) => {
       this.toastr.success('Produto cadastrado com sucesso')
       this.router.navigate(['/']);
       console.log(res)
