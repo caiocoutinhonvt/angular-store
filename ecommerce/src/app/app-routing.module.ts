@@ -9,6 +9,7 @@ import { SectionComponent } from './section/section.component';
 import { LoginUserComponent } from './user/login-user/login-user.component';
 import { RegisterUserComponent } from './user/register-user/register-user.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { AuthGuard } from './account/shared/auth.guard';
 
 const route: Routes = [
   {
@@ -20,8 +21,11 @@ const route: Routes = [
       {path: 'create/new', component: CreateProductComponent},
       {path: 'edit-product/:id', component: EditProductComponent}
       
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
+
+
   {
     path: '',
     component: LoginRegisterLayoutComponent,

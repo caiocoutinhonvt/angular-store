@@ -11,11 +11,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public registerUser(user:any){
-    return this.http.post("/api/api/user/new", user)
+    return this.http.post("api/user/new", user)
   }
 
-  public loginUser(user:any){
-    return this.http.post("/api/login", user)
-  }
 }
 

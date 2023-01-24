@@ -19,6 +19,7 @@ import { LoginUserComponent } from './user/login-user/login-user.component';
 import { RegisterUserComponent } from './user/register-user/register-user.component';
 import { ToastrModule } from 'ngx-toastr';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
