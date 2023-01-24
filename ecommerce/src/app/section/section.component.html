@@ -5,7 +5,7 @@
         <p class="not-found" *ngIf = "totalProducts() == 0">No items find in this store</p>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5" *ngFor = "let product of products">
-                <button type="button" class="btn btn-danger btn-circle btn-lg" (click)="delProduct(product.id)"><i class="glyphicon glyphicon-heart">X</i></button>
+                <button type="button" class="btn btn-danger btn-circle btn-lg" (click)="delProduct(product.id)" *ngIf="auth.isUserLoggedIn()"><i class="glyphicon glyphicon-heart">X</i></button>
                 <div class="card h-100" >
                     <!-- Product image-->
                     <a routerLink="/edit-product/{{product.id}}">
@@ -23,7 +23,10 @@
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
-                            <button class="btn btn-outline-dark mt-auto">Add to Cart</button >
+                            <button class="btn btn-outline-dark mt-auto" *ngIf="auth.isUserLoggedIn(); else notLogged">Add to Cart</button >
+                            <ng-template #notLogged>
+                                <button class="btn btn-outline-dark mt-auto" routerLink="/login">Add to Cart</button >
+                            </ng-template>
                             </div>
                     </div>
                 </div>

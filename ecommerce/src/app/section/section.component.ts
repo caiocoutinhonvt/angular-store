@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -11,9 +12,9 @@ export class SectionComponent {
 
   products:any = []
  
-
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    public auth: AuthenticationService
   ) {  }
 
   ngOnInit(){

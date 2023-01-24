@@ -11,14 +11,12 @@
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="email">User</label>
                                 <input id="email" type="text" class="form-control" name="user"  formControlName='name'required autofocus>
-                                <div *ngIf="formDir.submitted && name.invalid" class="invalid-form"> User is required</div>
+                                <div *ngIf="formDir.submitted && name.invalid" class="error-message"> User is required</div>
                             </div>
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="email">E-Mail</label>
                                 <input id="email" type="email" class="form-control" name="email" formControlName='email' required autofocus>
-                                <div *ngIf="formDir.submitted && email.invalid" class="invalid-form">
-                                    Email is invalid
-                                </div>
+                                <div *ngIf="formDir.submitted && email.invalid" class="error-message">Email is invalid</div>
                             </div>
                             <div class="mb-3">
                                 <div class="mb-2 w-100">
@@ -26,7 +24,7 @@
                                     
                                 </div>
                                 <input id="password" type="password" class="form-control" formControlName='password' required>
-                                <div *ngIf="formDir.submitted && password.invalid" class="invalid-form">Password is required</div>
+                                <div *ngIf="formDir.submitted && password.invalid" class="error-message">Password is required</div>
                             </div>
                             <div class="d-flex align-items-center">
                             

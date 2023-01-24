@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -11,16 +11,27 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login-user.component.css']
 })
 export class LoginUserComponent {
-  form: FormGroup;
+  loginForm!: FormGroup
   
-  constructor(private formBuilder:FormBuilder, private authentication: AuthenticationService, private toastr: ToastrService, private router: Router) {
-    this.form = this.formBuilder.group({
-      email: [null],
-      password: [null],
+  constructor(private formBuilder:FormBuilder, 
+    private authentication: AuthenticationService, 
+    private toastr: ToastrService, 
+    private router: Router) 
+    
+    {
+    this.loginForm = new FormGroup({
+      email: new FormControl([null], [Validators.required, Validators.email]),
+      password: new FormControl([null], [Validators.required, Validators.minLength(5)]),
     })
   }
 
+  get email(){return this.loginForm.get('email')!}
+
+  get password(){return this.loginForm.get('password')!}
+
+  
+
   onSubmit(){
-    this.authentication.login(this.form.value)
+    this.authentication.login(this.loginForm.value)
 }
 }

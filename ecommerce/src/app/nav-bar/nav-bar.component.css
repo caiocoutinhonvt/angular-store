@@ -8,7 +8,12 @@
     margin-left:20px
 }
 
-
 .navbar-brand{
     margin-left: -130px
+}
+
+.nav-login{
+    margin-left: 800px; 
+    cursor: pointer;
+
 }

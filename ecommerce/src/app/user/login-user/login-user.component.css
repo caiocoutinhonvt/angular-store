@@ -2,3 +2,7 @@ login-box{
     margin-top: 50px;
     margin-bottom: 10px;
 }
+
+.error-message{
+    color: red;
+}

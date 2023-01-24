@@ -18,9 +18,15 @@ const route: Routes = [
     children: [
       {path: '', component: SectionComponent},
       {path: 'about', component: AboutComponent},
+    ]
+  },
+
+  {
+    path:'',
+    component: LayoutComponent,
+    children: [
       {path: 'create/new', component: CreateProductComponent},
       {path: 'edit-product/:id', component: EditProductComponent}
-      
     ],
     canActivate: [AuthGuard]
   },

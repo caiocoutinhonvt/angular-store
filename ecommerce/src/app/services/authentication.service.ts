@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import jwt_decode from "jwt-decode";
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +76,9 @@ export class AuthenticationService {
     }
 
     return true
+  }
+
+  logout(){
+    localStorage.removeItem('token')
   }
 }
