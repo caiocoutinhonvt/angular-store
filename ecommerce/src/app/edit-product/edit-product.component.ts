@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 import { ProductService } from '../services/product.service';
 
 
@@ -19,11 +20,11 @@ export class EditProductComponent {
     price: new FormControl(0, [Validators.required]),
     image: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
-    store: new FormControl(0),
+    store: new FormControl(0, [Validators.required]),
   })
   
 
-  constructor(private productService: ProductService,  private toastr: ToastrService, private router: ActivatedRoute) { }
+  constructor(private productService: ProductService,  private toastr: ToastrService, private activateRouter: ActivatedRoute, private router: Router) { }
 
 
   shoesName:string = this.editProductForm.value.name as string;
@@ -34,8 +35,7 @@ export class EditProductComponent {
   ngOnInit():void{
     
 
-    this.productService.getProductById(this.router.snapshot.params['id']).subscribe((result:any) => {
-      console.log(result[0])
+    this.productService.getProductById(this.activateRouter.snapshot.params['id']).subscribe((result:any) => {
       this.editProductForm.setValue({
           name: result[0].name,
           price: result[0].price,
@@ -53,10 +53,17 @@ export class EditProductComponent {
   editProduct(){
     console.log(this.editProductForm.value)
 
-    this.productService.editProduct(this.router.snapshot.params['id'], this.editProductForm.value).subscribe((res)=>
-      console.log(res)
-    )
+    this.productService.editProduct(this.activateRouter.snapshot.params['id'], this.editProductForm.value).subscribe((res)=>
 
+    Swal.fire({
+      icon: 'success',
+      title: 'Product updated successfully',
+      showConfirmButton: false,
+      timer: 2000
+    })
+    )
+   
+    this.router.navigate(['/'])
     
   }
 }

@@ -26,8 +26,8 @@ export class ProductService {
     return this.http.get(`api/api/products/${product}`)
   }
 
-  public editProduct(id:any,product:any){
-    return this.http.put(`api/api/products/${product}`, product)
+  public editProduct(id:number,product:any){
+    return this.http.put(`api/api/products/${id}`, product)
   }
 }
 
