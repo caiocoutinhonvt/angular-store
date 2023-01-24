@@ -37,7 +37,7 @@ export class AuthenticationService {
   }
 
   getAuthorizationToken(){
-    const token = window.localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     return token
   }
 

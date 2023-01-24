@@ -20,6 +20,12 @@
     border-radius: 25px;
     margin-left:200px;
     margin-top: -30px;
-    position: relative;
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    z-index: 9
+}
 
-  }
+.card-product {
+    position: relative;
+}

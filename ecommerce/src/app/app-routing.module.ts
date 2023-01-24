@@ -11,6 +11,7 @@ import { RegisterUserComponent } from './user/register-user/register-user.compon
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { AuthGuard } from './account/shared/auth.guard';
 
+
 const route: Routes = [
   {
     path:'',
