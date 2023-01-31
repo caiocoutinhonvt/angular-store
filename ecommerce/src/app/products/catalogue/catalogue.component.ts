@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ProductService } from 'src/app/services/product.service';
 import Swal from 'sweetalert2';
-import { AuthenticationService } from '../services/authentication.service';
-import { ProductService } from '../services/product.service';
+
+
 
 @Component({
-  selector: 'app-section',
-  templateUrl: './section.component.html',
-  styleUrls: ['./section.component.css']
+  selector: 'app-catalogue',
+  templateUrl: './catalogue.component.html',
+  styleUrls: ['./catalogue.component.css']
 })
-export class SectionComponent {
+export class CatalogueComponent {
 
   products:any = []
  

@@ -1,0 +1,27 @@
+.form-group {
+    margin-left: 265px; 
+    margin-top:20px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+.btn-outline-success{
+    margin-left: 265px;
+    margin-bottom: 180px;
+    width: 200px;
+}
+
+.intro{
+    margin-left: 700px;
+    margin-top: -420px;
+    width: 700px;
+}
+
+.title-table{
+    color: white;
+    font-weight:400
+}
+
+.func-btn{
+    margin-top: -2px;
+}

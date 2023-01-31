@@ -1,23 +1,24 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'
-import { AboutComponent } from './about/about.component';
-import { CreateProductComponent } from './create-product/create-product.component';
+import { AboutComponent } from './main-template/about/about.component';
+import { CreateProductComponent } from './products/create-product/create-product.component';
 import { LayoutComponent } from './layout/layout.component';
-import { LoginRegisterLayoutComponent } from './user/login-register-layout/login-register-layout.component';
+import { LoginRegisterLayoutComponent } from './login-register-layout/login-register-layout.component';
 ;
-import { SectionComponent } from './section/section.component';
-import { LoginUserComponent } from './user/login-user/login-user.component';
-import { RegisterUserComponent } from './user/register-user/register-user.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
+import { CatalogueComponent } from './products/catalogue/catalogue.component';
+import { LoginUserComponent } from './users/login-user/login-user.component';
+import { RegisterUserComponent } from './users/register-user/register-user.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { AuthGuard } from './account/shared/auth.guard';
+import { CreateStoreComponent } from './store/create-store/create-store.component';
 
 
 const route: Routes = [
   {
     path:'',
-    component:LayoutComponent,
+    component: LayoutComponent,
     children: [
-      {path: '', component: SectionComponent},
+      {path: '', component: CatalogueComponent},
       {path: 'about', component: AboutComponent},
     ]
   },
@@ -26,7 +27,8 @@ const route: Routes = [
     path:'',
     component: LayoutComponent,
     children: [
-      {path: 'create/new', component: CreateProductComponent},
+      {path: 'create-product/new', component: CreateProductComponent},
+      {path: 'create-shop/new', component: CreateStoreComponent},
       {path: 'edit-product/:id', component: EditProductComponent}
     ],
     canActivate: [AuthGuard]

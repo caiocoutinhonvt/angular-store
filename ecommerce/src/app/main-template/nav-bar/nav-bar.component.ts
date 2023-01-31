@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import Swal from 'sweetalert2';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,7 +23,7 @@ export class NavBarComponent {
   logout(){
     Swal.fire({
       title: 'Logout',
-      text: 'Are you sure? After logging out you still able to access Shop and About Piet',
+      text: 'Are you sure?',
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: 'red',

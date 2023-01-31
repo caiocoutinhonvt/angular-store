@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/services/product.service';
 import Swal from 'sweetalert2';
-import { ProductService } from '../services/product.service';
+
 
 
 @Component({

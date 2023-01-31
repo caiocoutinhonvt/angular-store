@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ProductService } from '../services/product.service';
+import { StoreService } from 'src/app/store/services/store.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-create',
@@ -15,9 +16,10 @@ export class CreateProductComponent {
   shoesName:string = '';
   price:string = ''
   image:string = ''
+  storeList:any = []
   
 
-  constructor(private productService: ProductService,  private toastr: ToastrService, private router: Router) { }
+  constructor(private storeService: StoreService ,private productService: ProductService,  private toastr: ToastrService, private router: Router) { }
 
   ngOnInit():void{
     this.createForm = new FormGroup({
@@ -25,8 +27,9 @@ export class CreateProductComponent {
       price: new FormControl([null], [Validators.required]),
       image: new FormControl([null], [Validators.required]),
       category: new FormControl([null], [Validators.required]),
-      store: new FormControl(1, [Validators.required]),
+      store: new FormControl(0, [Validators.required]),
     })
+    this.getStore()
   }
 
   onSubmit(){
@@ -38,4 +41,13 @@ export class CreateProductComponent {
     })
   }
 
+  getStore(){
+    this.storeService.getShop().subscribe((res) => {
+      console.log(res)
+      this.storeList = res
+      console.log(this.storeList)
+    }, error => {
+      console.log(error)
+    })
+  }
 }
