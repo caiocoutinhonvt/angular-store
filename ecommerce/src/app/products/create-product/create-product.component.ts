@@ -27,7 +27,7 @@ export class CreateProductComponent {
       price: new FormControl([null], [Validators.required]),
       image: new FormControl([null], [Validators.required]),
       category: new FormControl([null], [Validators.required]),
-      store: new FormControl(0, [Validators.required]),
+      store: new FormControl(0, [Validators.required]) ,
     })
     this.getStore()
   }

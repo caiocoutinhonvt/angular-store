@@ -24,7 +24,7 @@
     <div class="form-group">
       <label for="category"> Shop:</label>
       <select class="form-control" formControlName = "store" >
-        <option value="17" *ngFor = "let store of storeList">{{store.id}}</option>
+        <option [ngValue]="store.id" *ngFor = "let store of storeList">{{store.name}}</option>
       </select>
     </div>
 
