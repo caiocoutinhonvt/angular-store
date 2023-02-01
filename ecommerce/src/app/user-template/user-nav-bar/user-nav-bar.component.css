@@ -1,0 +1,23 @@
+.cart{
+    width: 100px;
+    margin-left:30px
+}
+
+.login {
+    margin-bottom: 10px;
+    margin-left:20px
+}
+
+.navbar-brand{
+    margin-left: -130px
+}
+
+.nav-login{
+    margin-left: 800px; 
+    cursor: pointer;
+
+}
+
+.dropdown-item{
+    font-size: small;
+}

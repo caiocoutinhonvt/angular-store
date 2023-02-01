@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" routerLink="">PIET</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-5 mb-lg-0 ms-lg-5">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="">Home</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="">Catalogue</a></li>                
+            </ul>
+                <a class="nav-login" (click)="logout()" *ngIf="auth.isUserLoggedIn(); else notLogged">Logout</a>
+            <ng-template #notLogged>
+                <a class="nav-login" routerLink="/login">Login</a>
+            </ng-template>
+         
+            <button class="btn btn-outline-dark cart" type="submit" *ngIf="auth.isUserLoggedIn()" routerLink="/shop-cart">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill">{{ getCartNumber() }}</span>
+            </button>
+        </div>
+    </div>
+</nav>
