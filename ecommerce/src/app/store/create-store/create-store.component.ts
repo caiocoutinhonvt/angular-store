@@ -11,36 +11,37 @@ import { StoreService } from '../services/store.service';
 })
 export class CreateStoreComponent {
 
+  form = true
   storeList:any = []
+  editMode = false
   constructor(private storeService: StoreService, private formBuilder: FormBuilder ) {}
+  storeForm!: FormGroup
 
   ngOnInit():void{
-    this.storeForm
+    
     this.getStore()
+
+    this.storeForm = this.formBuilder.group({
+      id: [[null], [Validators.required]],
+      name:  ['', [Validators.required]],
+      website: ['', [Validators.required]],
+    })
     
   }
 
-  storeForm = this.formBuilder.group({
-    name:  ['', [Validators.required]],
-    website: ['', [Validators.required]],
-  })
+ 
 
-  onSubmit(){
-    console.log(this.storeForm.value)
+  createStore(){
     this.storeService.createShop(this.storeForm.value).subscribe((res) => {
-      this.ngOnInit()
-      console.log('ok')
       console.log(res)
     }, error => {
-      console.log('fail')
+      console.log(error)
     })
   }
 
   getStore(){
     this.storeService.getShop().subscribe((res) => {
-      console.log(res)
       this.storeList = res
-      console.log(this.storeList)
     }, error => {
       console.log(error)
     })
@@ -52,24 +53,57 @@ export class CreateStoreComponent {
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: 'red',
+      cancelButtonColor: 'LightGrey',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
 
         this.storeService.deleteShop(id).subscribe((res) => {
           this.ngOnInit()
+          // Swal.fire(
+          //   'Deleted!',
+          //   'The store has been deleted.',
+          //   'success'
+          // )
+        }, error => {
+          console.log(error)
+          Swal.fire(
+            'Failed!',
+            'This store cannot be deleted because it contains products.',
+            'success'
+          )
         })
 
-        Swal.fire(
-          'Deleted!',
-          'The store has been deleted.',
-          'success'
-        )
+      
       }
     })
-
   }
+
+  getStoreById(id:number){
+    this.storeService.getStoreById(id).subscribe((data:any) => {
+      console.log(data)
+
+    this.storeForm.setValue({
+        id: data[0].id,
+        name:  data[0].name,
+        website: data[0].website,
+    })
+
+    this.editMode = true
+
+    return id
+    })
+  }
+
+  editStore(){
+    this.storeService.editStore(this.storeForm.value.id,this.storeForm.value).subscribe((res) => {
+      console.log(res)
+    }, error => {
+      console.log(error)
+    })
+  }
+
+
 }
 

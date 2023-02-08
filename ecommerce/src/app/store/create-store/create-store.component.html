@@ -1,6 +1,6 @@
 
-  <div class="card-body" (submit)="onSubmit()">
-    <form [formGroup]="storeForm">
+  <div class="card-body" *ngIf="editMode; else notEditMode">
+    <form [formGroup]="storeForm" (submit)="editStore()">
       <div class="form-group">
         <label for="name">Store name:</label>
         <input type="text" class="form-control" placeholder="" formControlName= "name" >
@@ -8,24 +8,41 @@
       <div class="form-group">
         <label for="price"> Website:</label>
         <input type="text" class="form-control" style="margin-bottom: 30px;"placeholder="" formControlName= "website">
+        <input type="hidden" class="form-control" style="margin-bottom: 30px;"placeholder="" formControlName= "id">
       </div>
-      <button type="submit" class="btn btn-outline-success mt-auto">Confirmar</button>
+      <button type="submit" class="btn btn-outline-primary mt-auto">Edit</button>
     </form>
   </div>
 
-  <section class="intro">
+  <ng-template #notEditMode>
+    <div class="card-body" #notEditMode>
+      <form [formGroup]="storeForm" (submit)="createStore()">
+        <div class="form-group">
+          <label for="name">Store name:</label>
+          <input type="text" class="form-control" placeholder="" formControlName= "name" >
+        </div>
+        <div class="form-group">
+          <label for="price"> Website:</label>
+          <input type="text" class="form-control" style="margin-bottom: 30px;"placeholder="" formControlName= "website">
+        </div>
+        <button type="submit" class="btn btn-outline-success mt-auto">Create</button>
+      </form>
+    </div>
+  </ng-template>
+  
+  <section class="intro" >
       <div class="mask d-flex align-items-center h-100">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12">
               <div class="card">
-                <div class="card-body p-0">
-                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 300px">
+                <div class="card-body p-0" >
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 300px;">
                     <table class="table table-striped mb-0">
                       <thead style="background-color: #fd7a7a;">
                         <tr>
                           <th scope="col" class="title-table">Store</th>
-                          <th scope="col" class="title-table">Products</th>
+                          <th scope="col" class="title-table">Qt. Product</th>
                           <th scope="col" class="title-table">Website</th>
                           <th scope="col"></th>
                           <th scope="col"></th>
@@ -33,11 +50,11 @@
                       </thead>
                       <tbody *ngFor="let store of storeList">
                         <tr> 
-                          <th scope="row">{{store.name}}</th>
-                          <td>0</td>
+                          <td>{{store.name}}</td>
+                          <td>{{store.products.length}}</td>
                           <td>{{store.website}}</td>
-                          <td><button type="button" class="func-btn btn btn-sm btn-primary">Editar</button></td>
-                          <td><button type="button" class="func-btn btn btn-sm btn-danger" (click)="delStore(store.id)">Deletar</button></td>
+                          <td><button type="button" class="func-btn btn btn-sm btn-primary" (click)="getStoreById(store.id)">Edit</button></td>
+                          <td><button type="button" class="func-btn btn btn-sm btn-danger" (click)="delStore(store.id)">Delete</button></td>
                         </tr>
                       </tbody>
                     </table>

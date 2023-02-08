@@ -11,25 +11,31 @@ import { RegisterUserComponent } from './users/register-user/register-user.compo
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { CreateStoreComponent } from './store/create-store/create-store.component';
+import { ShopCartComponent } from './shop-cart/shop-cart.component';
+import { UserLayoutComponent } from './user-layout/user-layout.component';
+import { UserCatalogueComponent } from './user-template/user-catalogue/user-catalogue.component';
+
 
 
 const route: Routes = [
   {
     path:'',
-    component: LayoutComponent,
+    component: UserLayoutComponent,
     children: [
-      {path: '', component: CatalogueComponent},
+      {path: '', component: UserCatalogueComponent},
       {path: 'about', component: AboutComponent},
     ]
   },
 
   {
-    path:'',
+    path:'admin',
     component: LayoutComponent,
     children: [
-      {path: 'create-product/new', component: CreateProductComponent},
-      {path: 'create-shop/new', component: CreateStoreComponent},
-      {path: 'edit-product/:id', component: EditProductComponent}
+      {path: 'create-product/new', component: CreateProductComponent, canActivate: [AuthGuard]},
+      {path: 'create-shop/new', component: CreateStoreComponent, canActivate: [AuthGuard]},
+      {path: 'edit-product/:id', component: EditProductComponent, canActivate: [AuthGuard]},
+      {path: 'shop', component: CatalogueComponent, canActivate:[AuthGuard]}
+     
     ],
     canActivate: [AuthGuard]
   },
@@ -40,7 +46,8 @@ const route: Routes = [
     component: LoginRegisterLayoutComponent,
     children:[
       {path: 'login', component: LoginUserComponent},
-      {path: 'register', component: RegisterUserComponent}
+      {path: 'register', component: RegisterUserComponent},
+      {path: 'shop-cart', component: ShopCartComponent}
     ]
   }
 ]

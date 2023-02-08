@@ -8,7 +8,7 @@
                 <button type="button" class="btn btn-danger btn-circle btn-lg" (click)="delProduct(product.id)" *ngIf="auth.isUserLoggedIn()"><i class="fa fa-times"></i></button>
                 <div class="card h-100" >
                     <!-- Product image-->
-                    <a routerLink="/edit-product/{{product.id}}">
+                    <a routerLink="/admin/edit-product/{{product.id}}">
                         <img class="card-img-top" src="{{product.image}}" alt="..." />
                     </a>
                     <!-- Product details-->
@@ -23,10 +23,10 @@
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
-                            <button class="btn btn-outline-dark mt-auto" *ngIf="auth.isUserLoggedIn(); else notLogged">Add to Cart</button >
+                            <button class="btn btn-outline-dark mt-auto" *ngIf="auth.isUserLoggedIn(); else notLogged" (click)="addToCart(product.id)" disabled>Add to Cart</button >
                             <ng-template #notLogged>
-                                <button class="btn btn-outline-dark mt-auto" routerLink="/login">Add to Cart</button >
-                            </ng-template>
+                                <button class="btn btn-outline-dark mt-auto" routerLink="/login" >Add to Cart</button >
+                            </ng-template> 
                             </div>
                     </div>
                 </div>

@@ -5,15 +5,15 @@
                 <div class="text-center my-5" style="font-size: 25px;">
                 
                 </div>
-                <div class="card shadow-lg">
-                    <div class="card-body p-5">
+                <div class="login-card card shadow-lg">
+                    <div class=" card-body p-5">
                         <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
                         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #formDir = "ngForm">
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="email">E-Mail</label>
                                 <input id="email" type="email" class="form-control" name="email" formControlName="email" required autofocus>
                                 <div *ngIf="formDir.submitted && email.invalid" class="error-message">
-                                    Email is invalid
+                                    Email is required
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <p style="margin-bottom:120px;">
+                <p style="margin-bottom:248px;">
 
                 </p>
             </div>

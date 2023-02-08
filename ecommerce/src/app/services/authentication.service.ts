@@ -4,21 +4,26 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import jwt_decode from "jwt-decode";
 import { Token } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  SERVER_URL = "http://localhost:3500"
+
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) { }
 
   public login(user:any){
     console.info(user)
-    return this.http.post("/api/login", user).subscribe((res:any) => {
+    return this.http.post(`${environment.SERVER_URL}/login`, user).subscribe((res:any) => {
 
-      console.info(res.token)
+      let userId = res.user.id
       let token = res.token
       localStorage.setItem("token", token)
+      localStorage.setItem("userId", userId)
 
       Swal.fire({
         icon: 'success',
@@ -29,14 +34,15 @@ export class AuthenticationService {
 
       this.router.navigate(['/'])
     },
-    error =>{
-      console.log('error ao fazer login')
+    error => {
+        this.toastr.error(error)
+        console.log('error ao fazer login')
     }
     )
 
   }
 
-  getAuthorizationToken(){
+  getAuthorizationToken():string | null{
     const token = localStorage.getItem('token')
     return token
   }
@@ -66,7 +72,7 @@ export class AuthenticationService {
     return !(date!.valueOf() > new Date().valueOf());
   } 
 
-  isUserLoggedIn(){
+  isUserLoggedIn():boolean{
     const token = this.getAuthorizationToken()
 
     if(!token){
@@ -78,7 +84,13 @@ export class AuthenticationService {
     return true
   }
 
+  getUserId(){
+    return Number(localStorage.getItem('userId'))
+   
+  }
+
   logout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('userId')
   }
 }

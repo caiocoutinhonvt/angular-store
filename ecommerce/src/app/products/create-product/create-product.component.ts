@@ -19,7 +19,12 @@ export class CreateProductComponent {
   storeList:any = []
   
 
-  constructor(private storeService: StoreService ,private productService: ProductService,  private toastr: ToastrService, private router: Router) { }
+  constructor(
+    private storeService: StoreService,
+    private productService: ProductService,  
+    private toastr: ToastrService, 
+    private router: Router
+    ) { }
 
   ngOnInit():void{
     this.createForm = new FormGroup({
@@ -31,6 +36,12 @@ export class CreateProductComponent {
     })
     this.getStore()
   }
+
+  get formName(){return this.createForm.get('name')!}
+  get formPrice(){return this.createForm.get('price')!}
+  get formImage(){return this.createForm.get('image')!}
+  get formCategory(){return this.createForm.get('category')!}
+  get formStore(){return this.createForm.get('store')!}
 
   onSubmit(){
     console.log(this.createForm.value)

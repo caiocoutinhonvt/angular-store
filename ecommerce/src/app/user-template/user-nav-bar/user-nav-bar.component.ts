@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
   templateUrl: './user-nav-bar.component.html',
   styleUrls: ['./user-nav-bar.component.css']
 })
+
 export class UserNavBarComponent {
+
   constructor(
     public auth: AuthenticationService,
     private router: Router,
@@ -19,13 +21,13 @@ export class UserNavBarComponent {
   userCart:any = []
   cartNumber:number = 0
 
-  ngOnInit(){
-    this.getCart()
-
+  async ngOnInit(): Promise <void>{
+    // this.getCart()
   }
 
   getCartNumber(): number {
     return this.cartNumber
+    this.ngOnInit()
   }
 
   logout(){
@@ -53,7 +55,8 @@ export class UserNavBarComponent {
   getCart(){
     return this.cartService.getCart().subscribe((data) => {
       this.userCart = data
-      this.countItemInCart()
+      // this.countItemInCart()
+      this.ngOnInit();
     }, error => {
       console.log(error)
     }

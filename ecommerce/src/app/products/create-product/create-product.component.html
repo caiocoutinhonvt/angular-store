@@ -1,17 +1,20 @@
-<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()" #formDir="ngForm">
 
   <div class="card-body">
     <div class="form-group">
       <label for="name">Shoes name:</label>
       <input type="text" class="form-control" placeholder="" formControlName = "name" [(ngModel)]="shoesName">
+      <div *ngIf="formDir.submitted && formName.errors?.['required']" class="error-message">Name is required</div>
     </div>
     <div class="form-group">
       <label for="price"> Price:</label>
       <input type="number" class="form-control" placeholder="" formControlName = "price" [(ngModel)]="price">
+      <div *ngIf="formDir.submitted && formPrice.errors?.['required']" class="error-message">Price is required</div>
     </div>
     <div class="form-group">
       <label for="image">Image:</label>
       <input type="text" class="form-control" placeholder="" formControlName = "image" [(ngModel)]="image">
+      <div *ngIf="formDir.submitted && formImage.errors?.['required']" class="error-message">Image is required</div>
     </div>
     <div class="form-group">
       <label for="category"> Category:</label>
@@ -20,12 +23,14 @@
         <option value="Sports">Sports</option>
         <option value="Street">Street</option>
       </select>
+      <div *ngIf="formDir.submitted && formCategory.errors?.['required']" class="error-message">Category is required</div>
     </div>
     <div class="form-group">
       <label for="category"> Shop:</label>
       <select class="form-control" formControlName = "store" >
         <option [ngValue]="store.id" *ngFor = "let store of storeList">{{store.name}}</option>
       </select>
+      <div *ngIf="formDir.submitted && formStore.errors?.['required']" class="error-message">Store is required</div>
     </div>
 
     
@@ -60,9 +65,9 @@
                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                       <div class="text-center">
                          
-                          <button type="submit" class="btn btn-outline-success mt-auto" *ngIf="createForm.valid; else notValid" >Confirmar</button>
+                          <button type="submit" class="btn btn-outline-success mt-auto" *ngIf="createForm.valid; else notValid" >Confirm</button>
                           <ng-template #notValid>
-                            <button type="submit" class="btn btn-outline-dark mt-auto">Confirmar</button>
+                            <button type="submit" class="btn btn-outline-dark mt-auto">Confirm</button>
                           </ng-template>
                         </div>
                   </div>

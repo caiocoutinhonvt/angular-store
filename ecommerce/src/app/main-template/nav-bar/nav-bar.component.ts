@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ShopCartService } from 'src/app/shop-cart/services/shop-cart.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,16 +9,19 @@ import Swal from 'sweetalert2';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
+
 export class NavBarComponent {
   
   constructor(
     public auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private cartService: ShopCartService
   ){ }
 
-  cartNumber: number = 4
-  getCartNumber(): number {
-    return this.cartNumber
+  userCart:any = []
+  cartNumber:number = 0
+
+  async ngOnInit(): Promise<void> {
   }
 
   logout(){
@@ -41,6 +45,5 @@ export class NavBarComponent {
       }
     })
   }
-  
   
 }

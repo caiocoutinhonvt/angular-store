@@ -11,10 +11,17 @@
     width: 200px;
 }
 
+.btn-outline-primary{
+    margin-left: 265px;
+    margin-bottom: 180px;
+    width: 200px;
+}
+
 .intro{
     margin-left: 700px;
     margin-top: -420px;
     width: 700px;
+   margin-bottom: 200px;
 }
 
 .title-table{

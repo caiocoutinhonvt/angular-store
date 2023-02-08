@@ -15,7 +15,11 @@ export class RegisterUserComponent {
 
   registerForm!: FormGroup
 
-  constructor( private userService: UserService, private toastr: ToastrService, private router: Router) { }
+  constructor(
+    private userService: UserService, 
+    private toastr: ToastrService, 
+    private router: Router
+  ) { }
 
   ngOnInit():void{
     this.registerForm = new FormGroup({

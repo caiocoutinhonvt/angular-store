@@ -17,6 +17,10 @@ import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { LoginRegisterLayoutComponent } from './login-register-layout/login-register-layout.component';
 import { StoreModule } from './store/store.module';
+import { ShopCartComponent } from './shop-cart/shop-cart.component';
+import { UserNavBarComponent } from './user-template/user-nav-bar/user-nav-bar.component';
+import { UserLayoutComponent } from './user-layout/user-layout.component';
+import { UserCatalogueComponent } from './user-template/user-catalogue/user-catalogue.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { StoreModule } from './store/store.module';
     AboutComponent,
     LayoutComponent,
     LoginRegisterLayoutComponent,
+    ShopCartComponent,
+    UserNavBarComponent,
+    UserLayoutComponent,
+    UserCatalogueComponent,
 
   ],
   imports: [
@@ -47,3 +55,4 @@ import { StoreModule } from './store/store.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+  

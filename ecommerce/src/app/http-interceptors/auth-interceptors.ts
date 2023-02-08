@@ -15,7 +15,6 @@ export class AuthInterceptor implements HttpInterceptor {
         let request: HttpRequest<any> = req
 
         if (token){
-
           request = req.clone ({
             headers: req.headers.set('Authorization', `Bearer ${token}`)
           })
@@ -29,10 +28,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private handleError(error: HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {
-        // Client Side
         console.error('Ocorreu um erro:', error.error.message);
       } else {
-        // Backend
         console.error(
           `Código do erro ${error.status}, ` +
           `Erro: ${JSON.stringify(error.error)}`);
